@@ -31,7 +31,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         with:
           tag_name: v1.0.0  # Replace with your desired version
           release_name: Caddy v1.0.0  # Replace with your desired release name
