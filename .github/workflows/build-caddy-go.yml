@@ -47,25 +47,25 @@ jobs:
           path: ./caddy.tar.gz
 
 
-- name: Create Release
-  id: create_release
-  uses: ncipollo/release-action@v1
-  with:
-    name: 你的发布名称
-    artifacts: ./caddy.tar.gz
-    body: 这是我要发布的内容
-    token: ${{ secrets.REPO_TOKEN }}
-  env:
-    export PATH: $PATH:/usr/local/go/bin
+      - name: Create Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          name: 你的发布名称
+          artifacts: ./caddy.tar.gz
+          body: 这是我要发布的内容
+          token: ${{ secrets.REPO_TOKEN }}
+        env:
+          export PATH: $PATH:/usr/local/go/bin
 
-- name: Upload Release Asset
-  uses: actions/upload-release-asset@v1
-  with:
-    upload_url: ${{ steps.create_release.outputs.upload_url }}
-    asset_path: caddy.tar.gz
-    asset_name: caddy.tar.gz
-    asset_content_type: application/gzip
-  env:
-    GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: caddy.tar.gz
+          asset_name: caddy.tar.gz
+          asset_content_type: application/gzip
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
 
     
