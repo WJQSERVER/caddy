@@ -55,6 +55,7 @@ jobs:
           artifacts: ./caddy.tar.gz
           body: 这是我要发布的内容
           token: ${{ secrets.REPO_TOKEN }}
+          tag: 1.1.1
         env:
           export PATH: $PATH:/usr/local/go/bin
 
