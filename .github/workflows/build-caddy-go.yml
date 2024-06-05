@@ -43,8 +43,23 @@ jobs:
       - name: Upload to GitHub Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: caddy-artifact.tar.gz
-          path: ./caddy
+          name: caddy
+          path: ./caddy.tar.gz
+      - name: 发布到 Releases
+        uses: ncipollo/release-action@v1
+        with:
+          name: "你的发布名称"
+          artifacts: "artifact1.zip,artifact2.zip" # 输入你的 artifact 文件名，多个文件用逗号分隔
+          bodyFile: "body.md" # 用于描述此次发布的 markdown 文件
+          token: ${{ secrets.REPO_TOKEN }} # GitHub 自动生成的 token  
+      - name: Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "./caddy.tar.gz" # 这里写你要上传的构件路径
+          token: ${{ secrets.REPO_TOKEN }} # 这里使用了GitHub Actions的内置secrets
+          draft: false # 这表示创建的是一个正式版的Release，而不是草稿
+          prerelease: false # 这表示创建的是一个正式版的Release，而不是预发布版
+          replaceArtifacts: true # 这表示如果同名的构件已经存在，就替换它           
 #      - name: Create Release
 #        id: create_release
 #        uses: actions/create-release@v1
