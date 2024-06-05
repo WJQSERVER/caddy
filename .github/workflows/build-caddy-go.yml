@@ -43,8 +43,8 @@ jobs:
       - name: Upload to GitHub Artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: caddy-artifact
-          path: ./caddy.tar.gz
+          name: caddy-artifact.tar.gz
+          path: ./caddy
 #      - name: Create Release
 #        id: create_release
 #        uses: actions/create-release@v1
