@@ -51,11 +51,11 @@ jobs:
         id: create_release
         uses: ncipollo/release-action@v1
         with:
-          name: 你的发布名称
+          name: caddy
           artifacts: ./caddy.tar.gz
-          body: 这是我要发布的内容
+          body: caddy
           token: ${{ secrets.REPO_TOKEN }}
-          tag: 1.1.1
+          tag: 1.1.2
         env:
           export PATH: $PATH:/usr/local/go/bin
 
