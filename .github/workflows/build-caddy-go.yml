@@ -1,0 +1,67 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main  # 适应你的主分支名称
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: APT安装依赖
+        run: |
+          apt update
+          apt upgrade -y
+          apt curl vim wget gnupg dpkg apt-transport-https lsb-release ca-certificates tar zstd -y
+
+      - name: 安装GO环境
+        run: |
+          wget https://go.dev/dl/go1.22.1.linux-amd64.tar.gz
+          rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.1.linux-amd64.tar.gz
+          echo "export PATH=\$PATH:/usr/local/go/bin" >> /etc/profile
+          source /etc/profile
+          go version
+
+      - name: 部署Xcaddy
+        run: |
+          sudo curl -sSL https://dl.cloudsmith.io/public/caddy/xcaddy/gpg.key | sudo gpg --dearmor > /usr/share/keyrings/xcaddy.gpg
+          sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/xcaddy.gpg] https://dl.cloudsmith.io/public/caddy/xcaddy/deb/debian any-version main" > /etc/apt/sources.list.d/xcaddy.list
+          apt update
+          apt install -y xcaddy
+          
+      - name: 编译
+        rub: |
+          xcaddy build --with github.com/caddyserver/cache-handler --with github.com/ueffel/caddy-brotli --with github.com/caddyserver/transform-encoder --with github.com/RussellLuo/caddy-ext/ratelimit --with github.com/caddy-dns/cloudflare
+
+      - name: Package and Upload
+        run: |
+          tar -czvf caddy.tar.gz ./caddy # 将可执行文件打包为 tar.gz
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v1.0.0  # 创建发布的标签名称
+          release_name: Release v1.0.0  # 发布的名称
+          body: |
+            Release v1.0.0
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload_release_asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./caddy.tar.gz
+          asset_name: ${{ steps.create_release.outputs.filename }}
+          asset_content_type: application/gzip
