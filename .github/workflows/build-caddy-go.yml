@@ -45,42 +45,14 @@ jobs:
         with:
           name: caddy
           path: ./caddy.tar.gz
-      - name: 发布到 Releases
-        uses: ncipollo/release-action@v1
+
+
+      - name: upload
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: "2.2"
-          artifacts: "caddy.zip" # 输入你的 artifact 文件名，多个文件用逗号分隔
-          body: V.2.2.0
-          token: ${{ secrets.REPO_TOKEN }} # GitHub 自动生成的 token  
-          tag: 2.2
-      - name: Release
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "./caddy.tar.gz" # 这里写你要上传的构件路径
-          token: ${{ secrets.REPO_TOKEN }} # 这里使用了GitHub Actions的内置secrets
-          draft: false # 这表示创建的是一个正式版的Release，而不是草稿
-          prerelease: false # 这表示创建的是一个正式版的Release，而不是预发布版
-          replaceArtifacts: true # 这表示如果同名的构件已经存在，就替换它           
-#      - name: Create Release
-#        id: create_release
-#        uses: actions/create-release@v1
-#       env:
-#          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-#        with:
-#          tag_name: v1.0.0  # 创建发布的标签名称
- #         release_name: Release v1.0.0  # 发布的名称
-#          body: |
- #           Release v1.0.0
-  #        draft: false
-  #        prerelease: false
-#
-  #    - name: Upload Release Asset
- #       id: upload_release_asset
- #       uses: actions/upload-release-asset@v1
- #       env:
- #         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
- #       with:
- #         upload_url: ${{ steps.create_release.outputs.upload_url }}
- #         asset_path: ./caddy.tar.gz
-   #       asset_name: ${{ steps.create_release.outputs.filename }}
- #         asset_content_type: application/gzip
+          upload_url: ${{ needs.release.outputs.upload_url }}
+          asset_path: caddy.tar.gz
+          asset_name: caddy.tar.gz
+          asset_content_type: application/gzip
