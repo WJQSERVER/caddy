@@ -21,8 +21,8 @@ jobs:
       - name: 安装GO环境
         run: |
           wget https://go.dev/dl/go1.22.1.linux-amd64.tar.gz
-          rm -rf /usr/local/go && tar -C /usr/local -xzf go1.22.1.linux-amd64.tar.gz
-          echo "export PATH=\$PATH:/usr/local/go/bin" >> /etc/profile
+          sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.22.1.linux-amd64.tar.gz
+          sudo echo "export PATH=\$PATH:/usr/local/go/bin" >> /etc/profile
           source /etc/profile
           go version
 
@@ -39,7 +39,7 @@ jobs:
 
       - name: Package and Upload
         run: |
-          tar -czvf caddy.tar.gz ./caddy # 将可执行文件打包为 tar.gz
+          sudo tar -czvf caddy.tar.gz ./caddy # 将可执行文件打包为 tar.gz
 
       - name: Create Release
         id: create_release
