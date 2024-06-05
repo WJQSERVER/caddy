@@ -55,7 +55,7 @@ jobs:
           artifacts: ./caddy.tar.gz
           body: caddy
           token: ${{ secrets.REPO_TOKEN }}
-          tag: 1.1.3
+          tag: 1.1.4
         env:
           export PATH: $PATH:/usr/local/go/bin
 
