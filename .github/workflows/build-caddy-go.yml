@@ -15,9 +15,9 @@ jobs:
 
       - name: APT安装依赖
         run: |
-          apt update
-          apt upgrade -y
-          apt curl vim wget gnupg dpkg apt-transport-https lsb-release ca-certificates tar zstd -y
+          sudo apt update
+          sudo apt upgrade -y
+          sudo apt curl vim wget gnupg dpkg apt-transport-https lsb-release ca-certificates tar zstd -y
 
       - name: 安装GO环境
         run: |
@@ -31,8 +31,8 @@ jobs:
         run: |
           sudo curl -sSL https://dl.cloudsmith.io/public/caddy/xcaddy/gpg.key | sudo gpg --dearmor > /usr/share/keyrings/xcaddy.gpg
           sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/xcaddy.gpg] https://dl.cloudsmith.io/public/caddy/xcaddy/deb/debian any-version main" > /etc/apt/sources.list.d/xcaddy.list
-          apt update
-          apt install -y xcaddy
+          sudo apt update
+          sudo apt install -y xcaddy
 
       - name: 编译
         run: |
