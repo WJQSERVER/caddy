@@ -48,11 +48,11 @@ jobs:
       - name: 发布到 Releases
         uses: ncipollo/release-action@v1
         with:
-          name: "你的发布名称"
+          name: "2.2"
           artifacts: "caddy.zip" # 输入你的 artifact 文件名，多个文件用逗号分隔
-          body: V.2.1.0
+          body: V.2.2.0
           token: ${{ secrets.REPO_TOKEN }} # GitHub 自动生成的 token  
-          tag: 2.1
+          tag: 2.2
       - name: Release
         uses: ncipollo/release-action@v1
         with:
