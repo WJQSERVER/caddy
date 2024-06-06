@@ -1,0 +1,27 @@
+name: Package Action
+on: [push]
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Download and extract specific tag release
+      run: |
+        curl -s -L https://github.com/WJQSERVER/caddy/releases/download/2.8.4/{filename} -o release.tar.gz
+        tar -xzf release.tar.gz
+
+    - name: Package /pages directory
+      run: |
+        tar -czf pages.tar.gz ./pages
+        tar -I zstd -cf pages.tar.zst ./pages
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: packaged-files
+        path: |
+          pages.tar.gz
+          pages.tar.zst
