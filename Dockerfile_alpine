@@ -1,8 +1,7 @@
-FROM debian:12.5-slim
+FROM alpine:latest
 
 # 更新并安装所需的软件包
-RUN apt-get update && apt-get install -y \
-    sed wget curl tar
+RUN apk update && apk add sed wget curl tar
 
 # 下载和安装 Caddy
 RUN mkdir -p /data/caddy/config
