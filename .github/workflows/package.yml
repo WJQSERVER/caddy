@@ -11,20 +11,20 @@ jobs:
       
     - name: 安装依赖
       run: |
-        apt update
-        apt install curl wget tar unzip zstd -y
+        sudo apt update
+        sudo apt install curl wget tar unzip zstd -y
     - name: 拉取文件
       run: |
-        curl -s -L https://github.com/WJQSERVER/caddy/releases/download/2.8.4/caddy.tar.gz -o caddyd.tar.gz
-        tar -xzf caddyd.tar
-        mkdir -p caddy
-        mv caddy caddy/
+        sudo curl -s -L https://github.com/WJQSERVER/caddy/releases/download/2.8.4/caddy.tar.gz -o caddyd.tar.gz
+        sudo tar -xzf caddyd.tar
+        sudo mkdir -p caddy
+        sudo mv caddy caddy/
 
     - name: Package /pages directory
       run: | 
-        cp -r pages caddy/
-        tar -czf caddy_web.tar.gz -C caddy .
-        tar -I zstd -cf caddy_web.tar.zst -C caddy .
+        sudo cp -r pages caddy/
+        sudo tar -czf caddy_web.tar.gz -C caddy .
+        sudo tar -I zstd -cf caddy_web.tar.zst -C caddy .
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
