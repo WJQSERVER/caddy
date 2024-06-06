@@ -26,7 +26,7 @@ jobs:
         sudo tar -czf caddy_web.tar.gz -C caddy_web .
         sudo tar -I zstd -cf caddy_web.tar.zst -C caddy_web .
 
-    - name: 上传至Release
+    - name: release
         id: create_release
         uses: ncipollo/release-action@v1
         with:
