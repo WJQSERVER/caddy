@@ -38,8 +38,7 @@ jobs:
           sudo apt install -y xcaddy
 
 ＃      - name: 编译
-＃        run: |
-＃          xcaddy build --with github.com/caddyserver/cache-handler --with github.com/ueffel/caddy-brotli --with github.com/caddyserver/transform-encoder --with github.com/RussellLuo/caddy-ext/ratelimit --with github.com/caddy-dns/cloudflare
+＃        run: xcaddy build --with github.com/caddyserver/cache-handler --with github.com/ueffel/caddy-brotli --with github.com/caddyserver/transform-encoder --with github.com/RussellLuo/caddy-ext/ratelimit --with github.com/caddy-dns/cloudflare
 
       - name: Compile and Pack caddy
         env:
