@@ -17,14 +17,14 @@ jobs:
       run: |
         sudo wget -O caddyd.tar.gz https://github.com/WJQSERVER/caddy/releases/download/2.8.4/caddy.tar.gz
         sudo tar -xzvf caddyd.tar.gz
-        sudo mkdir -p caddy
-        sudo mv caddy caddy/
+        sudo mkdir -p caddy_web
+        sudo mv caddy caddy_web/
 
     - name: Package /pages directory
       run: | 
-        sudo cp -r pages caddy/
-        sudo tar -czf caddy_web.tar.gz -C caddy .
-        sudo tar -I zstd -cf caddy_web.tar.zst -C caddy .
+        sudo cp -r pages caddy_web/
+        sudo tar -czf caddy_web.tar.gz -C caddy_web .
+        sudo tar -I zstd -cf caddy_web.tar.zst -C caddy_web .
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
