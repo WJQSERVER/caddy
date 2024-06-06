@@ -54,5 +54,6 @@ jobs:
           body: Caddy2.8.4
           token: ${{ secrets.REPO_TOKEN }}
           tag: 2.8.4-multi
+          allowUpdates: true
         env:
           export PATH: $PATH:/usr/local/go/bin
