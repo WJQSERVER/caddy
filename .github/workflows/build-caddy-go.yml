@@ -52,10 +52,10 @@ jobs:
         id: create_release
         uses: ncipollo/release-action@v1
         with:
-          name: 2.8.4
-          artifacts: ./caddy.tar.gz
+          name: 2.8.4-multi
+          artifacts: ./caddy*.tar.gz
           body: Caddy2.8.4
           token: ${{ secrets.REPO_TOKEN }}
-          tag: 2.8.4
+          tag: 2.8.4-multi
         env:
           export PATH: $PATH:/usr/local/go/bin
