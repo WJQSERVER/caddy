@@ -37,7 +37,7 @@ jobs:
           sudo apt update
           sudo apt install -y xcaddy
           
-      - name: Compile and Pack caddy
+      - name: 打包编译
         env:
           GOOS: ${{ matrix.goos }}
           GOARCH: ${{ matrix.goarch }}
@@ -45,7 +45,7 @@ jobs:
           xcaddy build --with github.com/caddyserver/cache-handler --with github.com/ueffel/caddy-brotli --with github.com/caddyserver/transform-encoder --with github.com/RussellLuo/caddy-ext/ratelimit --with github.com/caddy-dns/cloudflare
           tar -czvf caddy-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz caddy
         
-      - name: Create Release
+      - name: 上传至Release
         id: create_release
         uses: ncipollo/release-action@v1
         with:
