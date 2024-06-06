@@ -26,10 +26,15 @@ jobs:
         sudo tar -czf caddy_web.tar.gz -C caddy_web .
         sudo tar -I zstd -cf caddy_web.tar.zst -C caddy_web .
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: packaged-files
-        path: |
-          caddy_web.tar.gz
-          caddy_web.tar.zst
+    - name: 上传至Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          name: 2.8.4
+          artifacts: ./caddy_web.tar.gz, ./caddy_web.tar.zst
+          body: Caddy2.8.4
+          token: ${{ secrets.REPO_TOKEN }}
+          tag: 2.8.4
+          allowUpdates: true
+        env:
+          export PATH: $PATH:/usr/local/go/bin
