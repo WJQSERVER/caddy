@@ -44,13 +44,14 @@ jobs:
         run: |
           xcaddy build --with github.com/caddyserver/cache-handler --with github.com/ueffel/caddy-brotli --with github.com/caddyserver/transform-encoder --with github.com/RussellLuo/caddy-ext/ratelimit --with github.com/caddy-dns/cloudflare
           tar -czvf caddy-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz caddy
+          tar -c caddy | zstd -o caddy-${{ matrix.goos }}-${{ matrix.goarch }}.tar.zst
         
       - name: 上传至Release
         id: create_release
         uses: ncipollo/release-action@v1
         with:
           name: 2.8.4
-          artifacts: ./caddy*.tar.gz
+          artifacts: ./caddy*.tar.gz, ./caddy*.tar.zst
           body: Caddy2.8.4
           token: ${{ secrets.REPO_TOKEN }}
           tag: 2.8.4
