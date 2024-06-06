@@ -8,8 +8,8 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p /data/caddy/config
 RUN mkdir -p /data/caddy/config.d
 RUN wget -O /data/caddy/caddy.tar.gz https://github.com/WJQSERVER/caddy/releases/download/2.8.4/caddy_web.tar.gz
-RUN tar -xzvf /data/caddy/caddy_web.tar.gz -C /data/caddy 
-RUN rm /data/caddy/caddy_web.tar.gz 
+RUN tar -xzvf /data/caddy/caddy.tar.gz -C /data/caddy 
+RUN rm /data/caddy/caddy.tar.gz 
 RUN chmod +x /data/caddy/caddy 
 RUN chown www-data:www-data /data/caddy/caddy 
 RUN wget -O /data/caddy/Caddyfile https://raw.githubusercontent.com/WJQSERVER/caddy/main/Caddyfile
