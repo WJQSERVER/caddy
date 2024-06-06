@@ -48,22 +48,10 @@ jobs:
         id: create_release
         uses: ncipollo/release-action@v1
         with:
-          name: 2.8.4
+          name: 2.8.4-test
           artifacts: ./caddy.tar.gz
           body: Caddy2.8.4
           token: ${{ secrets.REPO_TOKEN }}
-          tag: 2.8.4
+          tag: 2.8.4-test
         env:
           export PATH: $PATH:/usr/local/go/bin
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: caddy.tar.gz
-          asset_name: caddy.tar.gz
-          asset_content_type: application/gzip
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-
-    
