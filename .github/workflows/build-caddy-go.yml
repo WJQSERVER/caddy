@@ -1,10 +1,7 @@
-name: Build and Release
-
+name: Caddy Build
 on:
-  push:
-    branches:
-      - main  # 适应你的主分支名称
-
+  workflow_dispatch:
+  
 jobs:
   build:
     runs-on: ubuntu-latest
