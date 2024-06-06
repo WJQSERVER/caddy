@@ -30,4 +30,6 @@ jobs:
         with:
           platforms: linux/amd64
           push: true
-          tags: wjqserver/caddy:latest
+          tags: | 
+            wjqserver/caddy:2.8.4
+            wjqserver/caddy:latest
