@@ -1,7 +1,10 @@
 name: 打包
 on: 
   workflow_dispatch:
-
+  push:
+    tags:
+      - "*.*.*"
+      
 jobs:
   package:
     runs-on: ubuntu-latest
