@@ -1,4 +1,4 @@
-name: Package Action
+name: 打包
 on: 
   workflow_dispatch:
 
@@ -8,16 +8,25 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: Download and extract specific tag release
+      
+    - name: 安装依赖
       run: |
-        curl -s -L https://github.com/WJQSERVER/caddy/releases/download/2.8.4/{filename} -o release.tar.gz
-        tar -xzf release.tar.gz
+        apt update
+        apt install curl wget tar unzip zstd -y
+    - name: 拉取文件
+      run: |
+        curl -s -L https://github.com/WJQSERVER/caddy/releases/download/2.8.4/caddy.tar.gz -o caddyd.tar.gz
+        tar -xzf caddyd.tar
+        mkdir -p caddy
+        mv caddy caddy/
 
     - name: Package /pages directory
       run: |
         tar -czf pages.tar.gz ./pages
         tar -I zstd -cf pages.tar.zst ./pages
+        
+        cd caddy
+        tar -czf ../caddy_files.tar.gz *
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
