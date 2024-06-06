@@ -21,17 +21,15 @@ jobs:
         mv caddy caddy/
 
     - name: Package /pages directory
-      run: |
-        tar -czf pages.tar.gz ./pages
-        tar -I zstd -cf pages.tar.zst ./pages
-        
-        cd caddy
-        tar -czf ../caddy_files.tar.gz *
+      run: | 
+        cp -r pages caddy/
+        tar -czf caddy_web.tar.gz -C caddy .
+        tar -I zstd -cf caddy_web.tar.zst -C caddy .
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
         name: packaged-files
         path: |
-          pages.tar.gz
-          pages.tar.zst
+          caddy_web.tar.gz
+          caddy_web.tar.zst
