@@ -5,7 +5,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        goos: [linux, darwin, windows]
+        goarch: [amd64, arm64]
+        exclude:
+        - goos: darwin
+          goarch: arm64
+          
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -30,20 +37,18 @@ jobs:
           sudo apt update
           sudo apt install -y xcaddy
 
-      - name: 编译
+＃      - name: 编译
+＃        run: |
+＃          xcaddy build --with github.com/caddyserver/cache-handler --with github.com/ueffel/caddy-brotli --with github.com/caddyserver/transform-encoder --with github.com/RussellLuo/caddy-ext/ratelimit --with github.com/caddy-dns/cloudflare
+
+      - name: Compile and Pack caddy
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
         run: |
           xcaddy build --with github.com/caddyserver/cache-handler --with github.com/ueffel/caddy-brotli --with github.com/caddyserver/transform-encoder --with github.com/RussellLuo/caddy-ext/ratelimit --with github.com/caddy-dns/cloudflare
-
-      - name: Package and Upload
-        run: |
-          sudo tar -czvf caddy.tar.gz ./caddy # 将可执行文件打包为 tar.gz
-      - name: Upload to GitHub Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: caddy
-          path: ./caddy.tar.gz
-
-
+          tar -czvf caddy-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz caddy
+        
       - name: Create Release
         id: create_release
         uses: ncipollo/release-action@v1
