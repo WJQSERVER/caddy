@@ -36,10 +36,7 @@ jobs:
           curl -1sLf 'https://dl.cloudsmith.io/public/caddy/xcaddy/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-xcaddy.list
           sudo apt update
           sudo apt install -y xcaddy
-
-＃      - name: 编译
-＃        run: xcaddy build --with github.com/caddyserver/cache-handler --with github.com/ueffel/caddy-brotli --with github.com/caddyserver/transform-encoder --with github.com/RussellLuo/caddy-ext/ratelimit --with github.com/caddy-dns/cloudflare
-
+          
       - name: Compile and Pack caddy
         env:
           GOOS: ${{ matrix.goos }}
