@@ -16,7 +16,7 @@ jobs:
     - name: 拉取文件
       run: |
         sudo wget -O caddyd.tar.gz https://github.com/WJQSERVER/caddy/releases/download/2.8.4/caddy.tar.gz
-        sudo tar -xzvf caddyd.tar
+        sudo tar -xzvf caddyd.tar.gz
         sudo mkdir -p caddy
         sudo mv caddy caddy/
 
