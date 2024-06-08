@@ -11,6 +11,11 @@
  - github.com/RussellLuo/caddy-ext/ratelimit
  - github.com/caddy-dns/cloudflare
 
+安装
+---
+
+- ## Docker
+
 ### Docker-CLI
 
 ```
@@ -21,7 +26,6 @@ docker run -p 80:80 -p 443:443 -v ./caddy/config:/data/caddy/config -v ./caddy/c
 ```
 
 ### Docker-Compose
----
 
 ```
 version: '3.9'
