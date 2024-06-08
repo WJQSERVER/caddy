@@ -1,19 +1,14 @@
 # Caddy
 
-- ### 1
-- ### 2
-
-## Docker-CLI
+Docker-CLI
+---
 
 ### Debian-slim
 
 ```
+#Debian-slim底包
 docker run -p 80:80 -p 443:443 -v ./caddy/config:/data/caddy/config -v ./caddy/config.d:/data/caddy/config.d -v ./caddy/log:/data/caddy/log --restart always wjqserver/caddy:latest
-```
-
-### Alpine
-
-```
+#Alpine底包
 docker run -p 80:80 -p 443:443 -v ./caddy/config:/data/caddy/config -v ./caddy/config.d:/data/caddy/config.d -v ./caddy/log:/data/caddy/log --restart always wjqserver/caddy:alpine
 ```
 
