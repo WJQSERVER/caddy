@@ -2,7 +2,14 @@
 
 项目简介
 ---
+本项目使用Github Action对Caddy进行编译并打包Docker镜像
 
+#### 插件:
+ - github.com/caddyserver/cache-handler
+ - github.com/ueffel/caddy-brotli
+ - github.com/caddyserver/transform-encoder
+ - github.com/RussellLuo/caddy-ext/ratelimit
+ - github.com/caddy-dns/cloudflare
 
 ### Docker-CLI
 
