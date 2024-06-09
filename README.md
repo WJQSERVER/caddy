@@ -1,5 +1,7 @@
 # Caddy
 
+![pull](https://img.shields.io/docker/pulls/wjqserver/caddy.svg) ![size](https://img.shields.io/docker/image-size/wjqserver/caddy)
+
 项目简介
 ---
 本项目使用Github Action对Caddy进行编译并打包Docker镜像
