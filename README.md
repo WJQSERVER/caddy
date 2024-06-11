@@ -52,7 +52,7 @@
       version: '3.9'
       services:
           caddy:
-              image: 'wjqserver/caddy:latest'
+              image: 'wjqserver/caddy:alpine'
               restart: always
               volumes:
                   - './caddy/log:/data/caddy/log'
