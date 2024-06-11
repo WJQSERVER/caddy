@@ -13,37 +13,56 @@
  - github.com/RussellLuo/caddy-ext/ratelimit
  - github.com/caddy-dns/cloudflare
 
-安装
----
-
-- ## Docker
+## 安装
 
     ### Docker-CLI
+    
     - Debian-slim底包
       ```
       docker run -d -p 80:80 -p 443:443 -v ./caddy/config:/data/caddy/config -v ./caddy/config.d:/data/caddy/config.d -v ./caddy/log:/data/caddy/log --restart always wjqserver/caddy:latest
       ```
     - Alpine底包
+    
       ```
       docker run -d -p 80:80 -p 443:443 -v ./caddy/config:/data/caddy/config -v ./caddy/config.d:/data/caddy/config.d -v ./caddy/log:/data/caddy/log --restart always wjqserver/caddy:alpine
       ```    
         
-    ### Docker-Compose
+   ## Docker-Compose
+    
+   - Debian-slim底包
+    
+      ```
+      version: '3.9'
+      services:
+          caddy:
+              image: 'wjqserver/caddy:latest'
+              restart: always
+              volumes:
+                  - './caddy/log:/data/caddy/log'
+                  - './caddy/config.d:/data/caddy/config.d'
+                  - './caddy/config:/data/caddy/config'
+              ports:
+                  - '443:443'
+                  - '80:80'
 
-        
-        version: '3.9'
-        services:
-            caddy:
-                image: 'wjqserver/caddy:latest'
-                restart: always
-                volumes:
-                    - './caddy/log:/data/caddy/log'
-                    - './caddy/config.d:/data/caddy/config.d'
-                    - './caddy/config:/data/caddy/config'
-                ports:
-                    - '443:443'
-                    - '80:80'
-        
+      ```
+      
+   - Alpine底包
+      ```
+      version: '3.9'
+      services:
+          caddy:
+              image: 'wjqserver/caddy:latest'
+              restart: always
+              volumes:
+                  - './caddy/log:/data/caddy/log'
+                  - './caddy/config.d:/data/caddy/config.d'
+                  - './caddy/config:/data/caddy/config'
+              ports:
+                  - '443:443'
+                  - '80:80'      
+      ```   
+      
 相关链接
 ---
 
