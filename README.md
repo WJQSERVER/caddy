@@ -17,15 +17,15 @@
 
 ###    Docker-CLI
     
-    - Debian-slim底包
-      ```
-      docker run -d -p 80:80 -p 443:443 -v ./caddy/config:/data/caddy/config -v ./caddy/config.d:/data/caddy/config.d -v ./caddy/log:/data/caddy/log --restart always wjqserver/caddy:latest
-      ```
-    - Alpine底包
+- Debian-slim底包
+  ```
+  docker run -d -p 80:80 -p 443:443 -v ./caddy/config:/data/caddy/config -v ./caddy/config.d:/data/caddy/config.d -v ./caddy/log:/data/caddy/log --restart always wjqserver/caddy:latest
+  ```
+- Alpine底包
     
-      ```
-      docker run -d -p 80:80 -p 443:443 -v ./caddy/config:/data/caddy/config -v ./caddy/config.d:/data/caddy/config.d -v ./caddy/log:/data/caddy/log --restart always wjqserver/caddy:alpine
-      ```    
+  ```
+  docker run -d -p 80:80 -p 443:443 -v ./caddy/config:/data/caddy/config -v ./caddy/config.d:/data/caddy/config.d -v ./caddy/log:/data/caddy/log --restart always wjqserver/caddy:alpine
+  ```    
         
    ## Docker-Compose
     
