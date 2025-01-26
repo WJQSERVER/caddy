@@ -75,7 +75,7 @@ echo -e "${green}>${white} $mikublue 創建安裝目錄" $white
 mkdir -p /root/data/caddy
 mkdir -p /root/data/caddy/config
 echo -e "${green}>${white} $mikublue 下載主程序" $white
-VERSION=$(curl -s https://raw.githubusercontent.com/WJQSERVER/caddy/main/VERSION)
+VERSION=$(curl -s https://raw.githubusercontent.com/WJQSERVER/caddy/main/TEST-VERSION)
 wget -q -O /root/data/caddy/caddy.tar.gz https://github.com/WJQSERVER/caddy/releases/download/$VERSION/caddy-linux-amd64-pages.tar.gz
 echo -e "${green}>${white} $mikublue 解壓程序及其資源" $white
 tar -xzvf /root/data/caddy/caddy.tar.gz -C /root/data/caddy
