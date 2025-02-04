@@ -13,7 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
         GO_VERSION: 1.23.5
-        CADDY_VERSION: v2.9.1
+        #CADDY_VERSION: v2.9.1
+        CADDY_VERSION: master
     strategy:
       matrix:
         goos: [linux, darwin]
