@@ -2,6 +2,8 @@
     debug
     http_port 80
     https_port 443
+    order ja4h_header first
+    order webdav before file_server
     order cache before rewrite
     cache {
         cache_name CaddyCache

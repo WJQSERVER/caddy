@@ -50,7 +50,16 @@ jobs:
           GOOS: ${{ matrix.goos }}
           GOARCH: ${{ matrix.goarch }}
         run: |
-          xcaddy build ${{ env.CADDY_VERSION }} --with github.com/caddyserver/cache-handler --with github.com/WJQSERVER/souin-storages/simplefs/caddy --with github.com/ueffel/caddy-brotli --with github.com/caddyserver/transform-encoder --with github.com/WJQSERVER/caddy-ext/ratelimit --with github.com/caddy-dns/cloudflare --with github.com/WJQSERVER/caddy-ja4h --with github.com/WJQSERVER/caddy-ip-blocker 
+          xcaddy build ${{ env.CADDY_VERSION }} \
+            --with github.com/caddyserver/cache-handler \
+            --with github.com/WJQSERVER/souin-storages/simplefs/caddy \
+            --with github.com/ueffel/caddy-brotli \
+            --with github.com/caddyserver/transform-encoder \
+            --with github.com/WJQSERVER/caddy-ext/ratelimit \
+            --with github.com/caddy-dns/cloudflare \
+            --with github.com/WJQSERVER/caddy-ja4h \
+            --with github.com/WJQSERVER/caddy-ip-blocker \
+            --with github.com/mholt/caddy-webdav
           tar -czvf caddy-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz caddy
           tar -I 'zstd -15' -cf caddy-${{ matrix.goos }}-${{ matrix.goarch }}.tar.zst caddy
   
