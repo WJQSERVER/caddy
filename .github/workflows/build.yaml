@@ -57,7 +57,6 @@ jobs:
             --with github.com/WJQSERVER/caddy-ext/ratelimit \
             --with github.com/caddy-dns/cloudflare@master \
             --with github.com/WJQSERVER/caddy-ja4h \
-            # --with github.com/WJQSERVER/caddy-ip-blocker \
             --with github.com/mholt/caddy-webdav
           tar -czvf caddy-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz caddy
           tar -I 'zstd -15' -cf caddy-${{ matrix.goos }}-${{ matrix.goarch }}.tar.zst caddy
