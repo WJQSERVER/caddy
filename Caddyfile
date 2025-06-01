@@ -40,10 +40,10 @@
 
 (encode) {
     encode {
-	    zstd best
-		br 5 v2
-		gzip 5
-		minimum_length 1024
+	    zstd
+		br
+		gzip
+		minimum_length 512
     }
 }
 
