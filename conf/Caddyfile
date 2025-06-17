@@ -86,13 +86,5 @@
     }
 }
 
-:80 {
-	root * /root/data/caddy/pages/demo
-    file_server
-    import cache 0s 20s
-    import log 80
-    import error_page  
-    import encode
-}
-
-import /root/data/caddy/config.d/*
+import ./config.d/*
+import ./config/*
